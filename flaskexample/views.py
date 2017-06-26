@@ -130,16 +130,4 @@ def make_plot_donor(X_df,query):
     hover= HoverTool(tooltips="@desc", renderers = [cr])
     p.add_tools(hover)
     show(p)
-
-    # p = figure(plot_width=500, plot_height=500, title="Mouse over the dots to see bacteria phyla")
-    # # Set location of bubbles randomly scattered
-    # x = np.random.random(size=90) * 300
-    # y = np.random.random(size=90) * 300
-    # # Set log2(counts in each phyla) as radius, didn't use % composition because negative value
-    # # All samples are downsampled to 90000, so absolute value is equivalent to % composition 
-    # radius=np.log2(list(X_df.loc[query, X_df.columns != "AlphaDiversity"].values+1))
-    # colors = [ "#%02x%02x%02x" % (int(r), int(g), int(b)) for r, g, b, _ in 255*mpl.cm.viridis(mpl.colors.Normalize()(radius))]
-    # # add a Circle renderer to this figure
-    # p.circle(x,y, radius=radius, alpha=0.5, fill_color='navy', line_color=None)
-    # p.add_tools(HoverTool(tooltips = [("index", "$index")]))
     return p

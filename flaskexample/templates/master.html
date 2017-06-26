@@ -64,7 +64,7 @@
             width: 100%;
             min-height: auto;
             overflow-y: hidden;
-            background: url("../static/img/bg-pattern.png"), #7b4397;
+            background: {{ url_for ('static', filename='img/bg-pattern.png')}}, #7b4397;
             /* fallback for old browsers */
             background: url("../static/img/bg-pattern.png"), -webkit-linear-gradient(to left, #a27bb6, #7b4397);
             /* Chrome 10-25, Safari 5.1-6 */
@@ -591,7 +591,7 @@
                 </div>
                 <div class="col-md-4" align="center">
                     <div class="team-member">
-                        <img src="../static/img/Lily2016_1_small.jpg" class="img-responsive img-circle" alt="">
+                        <img src="{{ url_for('static', filename='img/Lily2016_1_small.jpg') }}" class="img-responsive img-circle" alt="">
                         <h4>Lily Xu</h4>
                         <p class="text-muted">Data Scientist</p>
                         
@@ -601,9 +601,11 @@
                 </div>
             </div>
             <div class="row">
-              <div class="col-md-12">
+              <div class="col-md-4">
+              </div>
+              <div class="col-md-3">
                 <ul class="list-inline social-buttons">
-                  <p align="center">
+                  <p>
                   <li><a href="mailto:lxu.lily@gmail.com"><i class="fa fa-envelope"></i></a>
                   </li>
                   <li><a href="https://www.linkedin.com/in/lilyxubioe"><i class="fa fa-linkedin"></i></a>
@@ -612,6 +614,8 @@
                   </li>                       
                   </p>     
                 </ul>
+              </div>
+              <div class="col-md-5">
               </div>
             </div>
             <div class="row">
