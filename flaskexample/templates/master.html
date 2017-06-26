@@ -1,0 +1,628 @@
+<!doctype html>
+<html class = "no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>HindSight{% block title %}{% endblock %}</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="apple-touch-icon" href="apple-touch-icon.png">
+        <!-- Place favicon.ico in the root directory -->
+        <!-- <link rel="stylesheet" href="/static/css/normalize.css">
+        <link rel="stylesheet" href="/static/css/main.css"> -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+        <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Catamaran:100,200,300,400,500,600,700,800,900" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Muli" rel="stylesheet">
+
+        <link rel="stylesheet" href="../static/lib/font-awesome/css/font-awesome.min.css">
+        <link rel="stylesheet" href="../static/lib/simple-line-icons/css/simple-line-icons.css">
+        
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+        <style>
+        hr { 
+            display: block;
+            margin-top: 0.5em;
+            margin-bottom: 0.5em;
+            margin-left: auto;
+            margin-right: auto;
+            border-style: inset;
+            border-width: 2px;
+            } 
+        form {
+             padding: 0;
+             margin: 0;
+            }
+        
+        ul {
+              list-style-type: none;
+              margin: 0;
+              padding: 0;
+              overflow: hidden;
+              background-color: #ffffff;
+          }
+
+          li {
+              float: right;
+          }
+
+          li a {
+              display: block;
+              color: white;
+              text-align: center;
+              padding: 14px 16px;
+              text-decoration: none;
+          }
+
+          li a:hover {
+              background-color: #7b4397;
+          }
+          header {
+            position: relative;
+            width: 100%;
+            min-height: auto;
+            overflow-y: hidden;
+            background: url("../static/img/bg-pattern.png"), #7b4397;
+            /* fallback for old browsers */
+            background: url("../static/img/bg-pattern.png"), -webkit-linear-gradient(to left, #a27bb6, #7b4397);
+            /* Chrome 10-25, Safari 5.1-6 */
+            background: url("../static/img/bg-pattern.png"), linear-gradient(to left, #a27bb6, #7b4397);
+            /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+            color: white;
+          }
+
+          header .header-content {
+            text-align: left;
+            padding: 150px 0 50px;
+            position: relative;
+          }
+          header .header-content .header-content-inner {
+            position: relative;
+            max-width: 500px;
+            margin: 0 auto;
+          }
+          header .header-content .header-content-inner h1 {
+            margin-top: 0;
+            margin-bottom: 30px;
+            font-size: 30px;
+          }
+          header .header-content .header-content-inner .list-badges {
+            margin-bottom: 25px;
+          }
+          header .header-content .header-content-inner .list-badges img {
+            height: 50px;
+            margin-bottom: 25px;
+          }
+          .navbar-default {
+            background-color: white;
+            border-color: rgba(34, 34, 34, 0.05);
+            -webkit-transition: all 0.35s;
+            -moz-transition: all 0.35s;
+            transition: all 0.35s;
+            font-family: 'Catamaran', 'Helvetica', 'Arial', 'sans-serif';
+            font-weight: 200;
+            letter-spacing: 1px;
+          }
+          .navbar-default .navbar-header .navbar-brand {
+            font-family: 'Catamaran', 'Helvetica', 'Arial', 'sans-serif';
+            font-weight: 200;
+            letter-spacing: 1px;
+            color: #222222;
+          }
+          .navbar-default .navbar-header .navbar-brand:hover,
+          .navbar-default .navbar-header .navbar-brand:focus {
+            color: #fcbd20;
+          }
+          .navbar-default .navbar-header .navbar-toggle {
+            font-size: 12px;
+            color: #222222;
+            padding: 8px 10px;
+          }
+          .navbar-default .nav > li > a {
+            font-family: 'Lato', 'Helvetica', 'Arial', 'sans-serif';
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-size: 11px;
+          }
+          .navbar-default .nav > li > a,
+          .navbar-default .nav > li > a:focus {
+            color: #222222;
+          }
+          .navbar-default .nav > li > a:hover,
+          .navbar-default .nav > li > a:focus:hover {
+            color: #7b4397;
+          }
+          .navbar-default .nav > li.active > a,
+          .navbar-default .nav > li.active > a:focus {
+            color: #ffffff !important;
+            background-color: transparent;
+          }
+          .navbar-default .nav > li.active > a:hover,
+          .navbar-default .nav > li.active > a:focus:hover {
+            background-color: transparent;
+          }
+          
+          section {
+            padding: 100px 0;
+            color:black;
+          }
+          section h2 {
+            font-size: 50px;
+          }
+          section.download {
+            padding: 150px 0;
+            position: relative;
+          }
+          section.download h2 {
+            margin-top: 0;
+            font-size: 50px;
+          }
+          section.download .badges .badge-link {
+            display: block;
+            margin-bottom: 25px;
+          }
+          section.download .badges .badge-link:last-child {
+            margin-bottom: 0;
+          }
+          section.download .badges .badge-link img {
+            height: 60px;
+          }
+          section.features .section-heading {
+            margin-bottom: 100px;
+          }
+          section.features .section-heading h2 {
+            margin-top: 0;
+          }
+          section.features .section-heading p {
+            margin-bottom: 0;
+          }
+          section.features .device-container,
+          section.features .feature-item {
+            max-width: 300px;
+            margin: 0 auto;
+          }
+          section.features .device-container {
+            margin-bottom: 100px;
+          }
+          @media (min-width: 992px) {
+            section.features .device-container {
+              margin-bottom: 0;
+            }
+          }
+          section.features .feature-item {
+            text-align: center;
+            margin-bottom: 100px;
+          }
+          section.features .feature-item h3 {
+            font-size: 30px;
+          }
+          section.features .feature-item i {
+            font-size: 80px;
+            background: -webkit-linear-gradient(to left, #ffffff, #dc2430);
+            background: linear-gradient(to left, #fffffff, #dc2430);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: #222222;
+          }
+          section.cta {
+            position: relative;
+            -webkit-background-size: cover;
+            -moz-background-size: cover;
+            background-size: cover;
+            -o-background-size: cover;
+            background-position: center;
+            background-image: url('../static/img/bg-cta.jpg');
+            padding: 250px 0;
+          }
+          section.cta .cta-content {
+            position: relative;
+            z-index: 1;
+          }
+          section.cta .cta-content h2 {
+            margin-top: 0;
+            margin-bottom: 25px;
+            color: white;
+            max-width: 450px;
+            font-size: 50px;
+          }
+          @media (min-width: 768px) {
+            section.cta .cta-content h2 {
+              font-size: 80px;
+            }
+          }
+          section.cta .overlay {
+            height: 100%;
+            width: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            position: absolute;
+            top: 0;
+            left: 0;
+          }
+         .team-member {
+            text-align: center;
+            margin-bottom: 50px;
+          }
+          .team-member img {
+            margin: 0 auto;
+            border: 7px solid white;
+          }
+          .team-member h4 {
+            margin-top: 25px;
+            margin-bottom: 0;
+            text-transform: none;
+          }
+          .team-member p {
+            margin-top: 0;
+          }
+          aside.clients img {
+            margin: 50px auto;
+          }
+          section#contact {
+            background-color: #222222;
+            background-image: url('../static/img/map-image.png');
+            background-position: center;
+            background-repeat: no-repeat;
+          }
+          section#contact .section-heading {
+            color: white;
+          }
+          section#contact .form-group {
+            margin-bottom: 25px;
+          }
+          section#contact .form-group input,
+          section#contact .form-group textarea {
+            padding: 20px;
+          }
+          section#contact .form-group input.form-control {
+            height: auto;
+          }
+          section#contact .form-group textarea.form-control {
+            height: 236px;
+          }
+          section#contact .form-control:focus {
+            border-color: #fed136;
+            box-shadow: none;
+          }
+          section#contact ::-webkit-input-placeholder {
+            font-family: "Montserrat", "Helvetica Neue", Helvetica, Arial, sans-serif;
+            text-transform: uppercase;
+            font-weight: 700;
+            color: #eeeeee;
+          }
+          section#contact :-moz-placeholder {
+            /* Firefox 18- */
+            font-family: "Montserrat", "Helvetica Neue", Helvetica, Arial, sans-serif;
+            text-transform: uppercase;
+            font-weight: 700;
+            color: #eeeeee;
+          }
+          section#contact ::-moz-placeholder {
+            /* Firefox 19+ */
+            font-family: "Montserrat", "Helvetica Neue", Helvetica, Arial, sans-serif;
+            text-transform: uppercase;
+            font-weight: 700;
+            color: #eeeeee;
+          }
+          section#contact :-ms-input-placeholder {
+            font-family: "Montserrat", "Helvetica Neue", Helvetica, Arial, sans-serif;
+            text-transform: uppercase;
+            font-weight: 700;
+            color: #eeeeee;
+          }
+          section#contact .text-danger {
+            color: #e74c3c;
+          }
+          footer {
+            background-color: #222222;
+            padding: 25px 0;
+            color: rgba(255, 255, 255, 0.3);
+            text-align: center;
+          }
+          footer p {
+            font-size: 12px;
+            margin: 0;
+          }
+          footer ul {
+            margin-bottom: 0;
+          }
+          footer ul li a {
+            font-size: 12px;
+            color: rgba(255, 255, 255, 0.3);
+          }
+          footer ul li a:hover,
+          footer ul li a:focus,
+          footer ul li a:active,
+          footer ul li a.active {
+            text-decoration: none;
+          }
+          .bg-primary {
+            background: transparent;
+            /*background: -webkit-linear-gradient(#fdcc52, #fdc539);
+            background: linear-gradient(#fdcc52, #fdc539);*/
+          }
+          .text-primary {
+            color: #fdcc52;
+          }
+          .no-gutter > [class*='col-'] {
+            padding-right: 0;
+            padding-left: 0;
+          }
+          .btn-outline {
+            color: white;
+            border-color: white;
+            border: 1px solid;
+          }
+          .btn-outline:hover,
+          .btn-outline:focus,
+          .btn-outline:active,
+          .btn-outline.active {
+            color: white;
+            background-color: transparent;
+            border-color: #fdcc52;
+          }
+          .btn {
+            font-family: 'Lato', 'Helvetica', 'Arial', 'sans-serif';
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            border-radius: 300px;
+          }
+          .btn-xl {
+            padding: 15px 45px;
+            font-size: 11px;
+          }
+          ::-moz-selection {
+            color: white;
+            text-shadow: none;
+            background: #222222;
+          }
+          ::selection {
+            color: black;
+            text-shadow: none;
+            background: #222222;
+          }
+          img::selection {
+            color: black;
+            background: transparent;
+          }
+          img::-moz-selection {
+            color: black;
+            background: transparent;
+          }
+          body {
+            webkit-tap-highlight-color: #222222;
+          }
+          .bg-light-gray {
+            background-color: #eeeeee;
+          }
+          .text-muted {
+            color: #777777;
+          }
+
+          ul.social-buttons {
+            margin-bottom: 0;
+          }
+          ul.social-buttons li a {
+            align-content: center
+            display: block;
+            background-color: #222222;
+            height: 50px;
+            width: 50px;
+            border-radius: 100%;
+            font-size: 20px;
+            line-height: 30px;
+            color: white;
+            outline: none;
+            -webkit-transition: all 0.3s;
+            -moz-transition: all 0.3s;
+            transition: all 0.3s;
+          }
+          ul.social-buttons li a:hover,
+          ul.social-buttons li a:focus,
+          ul.social-buttons li a:active {
+            background-color: #fed136;
+          }
+          .btn:focus,
+          .btn:active,
+          .btn.active,
+          .btn:active:focus {
+            outline: none;
+          }
+          ul.list-inline {
+            margin-bottom: 30px;
+            margin-top: 0;
+          }
+
+        </style>
+    </head>
+
+
+  <nav id="mainNav" class="navbar navbar-default navbar-fixed-top">
+      <div class="container">
+          <!-- Brand and toggle get grouped for better mobile display -->
+          <div class="navbar-header">
+              <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                  <span class="sr-only">Toggle navigation</span> Menu <i class="fa fa-bars"></i>
+              </button>
+              <a class="navbar-brand page-scroll header" href="#page-top">HindSight</a>
+          </div>
+      
+          <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav navbar-right">
+              <li>
+                  <a class="page-scroll" href="#index">Predict</a>
+              </li>
+              <li>
+                  <a class="page-scroll" href="#Background">Background</a>
+              </li>
+              <li>
+                  <a class="page-scroll" href="#slides">slides</a>
+              </li>
+              <li>
+                  <a class="page-scroll" href="#team">Contact</a>
+            </ul>
+          </div>
+      </div>
+  </nav>
+
+  <header>
+          <div class="container">
+              <div class="row">
+                  <div class="col-sm-8">
+                      <div class="header-content">
+                          <div class="header-content-inner">
+                              <h1><font face="Palatino Linotype"><i>HindSight </i></font></h1>
+                              <h1><font size ="3">Predicting the donor success <br> for gut microbiota transplantations</font></h1>
+                          </div>
+                      </div>
+                  </div>           
+              </div>
+          </div>
+  </header>
+
+<body id="page-top">
+  <section id="index" class="download bg-primary text-center">
+    {% block content %}
+
+    <div class = "container">
+      <div class = "row">
+        <div class = "col-md-12">
+          <font color="black" size="3">
+          Please select the donor sample to be analyzed: 
+          <br><br>
+        </div>
+        <br><br>
+      </div>
+      
+      <div class = "row">
+        <div class = "col-md-12">
+          <form action="/go">
+          <select name="query" style="width: 200px;">
+            <option value="SRR5318509_90000_1.fastq.gz">Donor 1</option>
+            <option value="SRR5318553_90000_1.fastq.gz">Donor 2</option>
+            <option value="SRR5318570_90000_1.fastq.gz">Donor 3</option>
+            <option value="SRR5318539_90000_1.fastq.gz">Donor 4</option>
+          </select>
+          <br><br>
+          <button type="submit" name="query" style="width: 200px;align: center;">Submit</button>
+          <br><br><br> </font>
+          </form>
+        </div>
+      </div>  
+    </div>
+    {% endblock %}
+
+  </section>
+
+<section id="Background" class="download bg-primary text-center bg-light-gray">
+      <div class="container">
+        <h1><font color="black">
+        Background knowledge of the human microbiome</font></h1>
+        <br><br>
+
+        <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">The human microbiome<span class="caret"></span></button>        
+          <div class="modal fade" id="myModal" role="dialog">
+              <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">The human microbiome </h4>
+                  </div>
+                  <div class="modal-body">
+                    <p><img src="https://i0.wp.com/allergiesandyourgut.com/wp-content/uploads/2015/06/gut-microbiome.gif" width="90%" height="90%" ></p>
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                  </div>
+                </div>
+              </div>
+          </div>
+        <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal1">Gut microbiome transplantations<span class="caret"></span></button>
+
+        <p align="left" style="text-align: justify"> <font color="black"><br><br>The human body is comprised of many microorganisms, which are of the same order as the number of human cells. Among the many microbiome niches on and inside the human body, the gut microbiome has been shown to play a critical role in affecting human health. 
+        <br><br>
+        As one example, <i>Clostridium difficile</i> infection (CDI) in the U.S. is estimated to have 500,000 incidences, with a mortality rate of 15,000-20,000 per year. The cost of managing CDI was estimated to be at least $ 1 billion per year in the U.S. alone. Remarkably, though, the basic pathophysiology of recurrent CDI is not completely understood. <i>C. difficile</i> is not pathogenic at low levels. Broad-spectrum antibiotics disrupt patients' gut microbial communities that normally keep <i>C. difficile</i>  population in check. <i>C. difficile</i>  spores can remain dormant during the antibiotic treatment and take over after treatment ends to proliferate, disrupt and cause inflammation in the gut by secreting toxins that damage the gut endothelial lining. As a result, the current treatment uses Fecal Microbiota Transplantation (FMT) to reconstitute normal microbial homeostasis, but our biomedical understanding of FMT is limited. For instance, it is challenging to select the donor that guarantees a safe and efficacious FMT.</font></p>
+
+      </div>
+      <br>
+      <div class="container">
+          <div class="modal fade" id="myModal1" role="dialog">
+              <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">The beneficial effect of gut/fecal microbiome transplantations (FMT) </h4>
+                  </div>
+                  <div class="modal-body">
+                    <p><img src="http://www.gutmicrobiotaforhealth.com/wp-content/uploads/2016/04/faecal-microbiota-transplantation-1.jpg" width="100%" height="100%"></p>
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                  </div>
+                </div>
+              </div>
+          </div>
+      </div> 
+</section>
+
+<section id="slides" class="features">
+          <div class="container">
+              <div class="row">
+                  <div class="col-lg-12 text-center">
+                      <iframe src="https://docs.google.com/presentation/d/1xA6JSUdNKc1S63gVUqpaEYt_hIAyq8kvlYXL0kzreSU/embed?start=false&loop=false&delayms=30000" frameborder="0" width="960" height="560" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>
+                  </div>
+              </div>
+              <div class="row">
+              <br><br><br>
+              </div>
+          </div>
+</section>
+
+<section id="team" class="bg-light-gray">
+        <div class="container">
+        <h2 align="center">We <font color="red"><i class="fa fa-heart"></i></font> microbiome!</h2>
+            <div class="row">
+                <div class="col-md-12 text-center">
+                    <h4 class="section-heading"></h4>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-4">
+                </div>
+                <div class="col-md-4" align="center">
+                    <div class="team-member">
+                        <img src="../static/img/Lily2016_1_small.jpg" class="img-responsive img-circle" alt="">
+                        <h4>Lily Xu</h4>
+                        <p class="text-muted">Data Scientist</p>
+                        
+                    </div>
+                </div>
+                <div class="col-md-4">
+                </div>
+            </div>
+            <div class="row">
+              <div class="col-md-12">
+                <ul class="list-inline social-buttons">
+                  <p align="center">
+                  <li><a href="mailto:lxu.lily@gmail.com"><i class="fa fa-envelope"></i></a>
+                  </li>
+                  <li><a href="https://www.linkedin.com/in/lilyxubioe"><i class="fa fa-linkedin"></i></a>
+                  </li>
+                  <li><a href="https://github.com/lilyxly"><i class="fa fa-github"></i></a>
+                  </li>                       
+                  </p>     
+                </ul>
+              </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-2 text-center">
+                  <p class="large text-muted"></p>
+                </div>
+            </div>
+        </div>
+</section>
+
+
+</body>
+
+</html> 

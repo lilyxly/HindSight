@@ -1,0 +1,49 @@
+{% extends "master.html" %}
+{% block title %} | Results{% endblock %}
+{% block content %}
+	<!-- <p>The donor is: {{donorID}} -->
+	<div class = "container" align="left">
+      <div class = "row">
+      	<div class = "col-md-3">
+      	</div>
+        <div class = "col-md-6">
+			<font color="black" size="3">
+			<p>The donation will be a <font size ="5"> <b>{{query_results}}</b></font> </p> 
+
+			<p> The probability is {{query_proba}} </p>
+			<p>The gut microbial composition of the donor is shown below as a bubble plot: <br>(Radii of the circles are correlated with percentage compositions):</p>
+
+			{{ fig_script_donor|indent(4)|safe }}
+			{{ fig_div_donor|safe }}
+			</font>
+		</div>
+		<div class = "col-md-3">
+        </div>
+	  </div>
+	  <div class = "row">
+	  	<div class = "col-md-12">
+	  		<font color="black" size="4" > 
+	  		<br><br>
+			<p> The comparision of the gut microbial compositions (top 8):</p>
+			<p><font size="3"> (use wheel zoom to see minority groups)</font></p> 
+		    {{ fig_script|indent(4)|safe }}
+			{{ fig_div|safe }}
+			</font>
+	  	</div>
+	  </div>
+
+	</div>
+	<br><br>
+	<div class="container" align="center">
+	<a href="/index" class = "btn btn-primary">Try a different sample</a>
+	</div>
+
+	<link
+	    href="http://cdn.pydata.org/bokeh/release/bokeh-0.12.6.min.css"
+	    rel="stylesheet" type="text/css">
+	<link
+	    href="http://cdn.pydata.org/bokeh/release/bokeh-widgets-0.12.6.min.css"
+	    rel="stylesheet" type="text/css">
+    <script src="http://cdn.pydata.org/bokeh/release/bokeh-0.12.6.min.js"></script>
+	<script src="http://cdn.pydata.org/bokeh/release/bokeh-widgets-0.12.6.min.js"></script>
+{% endblock %}
