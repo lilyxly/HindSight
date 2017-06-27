@@ -11,7 +11,7 @@ import matplotlib.pyplot as plt
 
 from flask import render_template
 from flask import request
-from flaskexample import app
+from app import app
 from sqlalchemy import create_engine
 from sqlalchemy_utils import database_exists, create_database
 from flask_sqlalchemy import SQLAlchemy
