@@ -10,11 +10,12 @@
 			<font color="black" size="3">
 			<p>The donation will be a <font size ="5"> <b>{{query_results}}</b></font> </p> 
 
-			<p> The probability is {{query_proba}} </p>
-			<p>The gut microbial composition of the donor is shown below as a bubble plot: <br>(Radii of the circles are correlated with percentage compositions):</p>
+			<p> The probability of success is {{query_proba}} </p>
+			<p> The gut microbial composition of the donor is shown below as a bubble plot: <br>(Radii of the circles are correlated with percentage compositions):</p>
 
 			{{ fig_script_donor|indent(4)|safe }}
 			{{ fig_div_donor|safe }}
+			<p> Description source: uBiome.com
 			</font>
 		</div>
 		<div class = "col-md-3">

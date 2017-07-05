@@ -32,7 +32,7 @@ from bokeh.models import HoverTool
 # con = None
 # con = psycopg2.connect(database = dbname, user = username, password = password)
 
-X_df = pd.read_csv('./20170625DonorPatientPre_features.csv',index_col=0)
+X_df = pd.read_csv('./20170705DonorPatientPre_features_percent.csv',index_col=0)
 Y_df = pd.read_csv('./20170625DonorPatientPre_results.csv',index_col=0)
 length = len(X_df)
 
@@ -46,6 +46,7 @@ def go():
     query = request.args.get("query", '')
     query = query.encode('ascii','replace')
     query_proba = Y_df['Probability'].loc[query]
+    query_proba = float("{0:.2f}".format(query_proba))
     microbial_composition=X_df.loc[query, X_df.columns != "AlphaDiversity"]
 
     Donor_composition_df=microbial_composition.to_frame()
@@ -54,7 +55,7 @@ def go():
     fig_script, fig_div = components(figure)
     figure_donor = make_plot_donor(X_df,query)
     fig_script_donor, fig_div_donor = components(figure_donor)
-    if query_proba > 0.64:
+    if query_proba > 0.6:
     	query_results="Success!"
     else:
     	query_results="Failure."
@@ -114,20 +115,33 @@ def make_plot_donor(X_df,query):
     y = np.random.random(size=90) *300
     # Set log2(counts in each phyla) as radius, didn't use % composition because negative value
     # All samples are downsampled to 90000, so absolute value is comparable to % composition 
-    percentcomp = list(X_df.ix[query, X_df.columns != "AlphaDiversity"].values)
+    percentcomp = list(X_df.ix[query, X_df.columns != "AlphaDiversity"].values * 100)
     radius = np.log2(list(X_df.ix[query, X_df.columns != "AlphaDiversity"].values*90000+1))
     phylaNames = list(X_df.columns[X_df.columns != "AlphaDiversity"].values)
+    phylaDesc_df = pd.read_csv('./phyla_desc.csv', index_col=0)
+    phylaDesc = phylaDesc_df['desc']
     source = ColumnDataSource(
         data = dict(
             desc = phylaNames, 
-            percent = percentcomp ))
+            percent = percentcomp, 
+            phylaDesc = phylaDesc ))
 
     for name, hex in matplotlib.colors.cnames.items():
         colors.append(name)
 
     # add a Circle renderer to this figure
     cr = p.circle(x, y, radius=radius,alpha=0.5, fill_color=colors[0:90],line_color=None, source = source)
-    hover= HoverTool(tooltips="@desc", renderers = [cr])
+    hover= HoverTool(tooltips=
+    	"""
+    	<div style="width:300px">
+    	<span style="font-size:17px">
+    	<p> @desc </p> 
+    	<p> Percent composition: @percent % </p> 
+    	<p> @phylaDesc </p> 
+    	</span>
+    	</div>
+
+    	""", renderers = [cr])
     p.add_tools(hover)
     show(p)
     return p
